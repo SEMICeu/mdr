@@ -17,7 +17,9 @@ body {
   min-height: 100%;
 }
 
-header, section, footer {
+body > header,
+body > section,
+body > footer {
   max-width: 978px;
   margin: 30px auto;
   display: block;
@@ -25,14 +27,15 @@ header, section, footer {
   padding: 30px 40px;
 }
 
-header, section {
+body > header,
+body > section {
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0,0,0,.1);
 }
 
 /* Header */
 
-header {
+body > header {
   background: #0f5494;
   color: white;
   margin-top: 0;
@@ -42,18 +45,18 @@ header {
   padding-bottom: 20px;
 }
 
-header .logo {
+body > header .logo {
   float: left;
   margin-right: 20px;
 }
 
-header h1 {
+body > header h1 {
   margin: 0;
   font-size: 32px;
   font-weight: 600;
 }
 
-header .subtitle {
+body > header .subtitle {
   color: white;
   font-size: 28px;
   margin: 0;
@@ -62,7 +65,7 @@ header .subtitle {
 
 /* Sections */
 
-section {
+body > section {
   background: white;
 }
 
@@ -72,7 +75,7 @@ h2 {
   color: #0f5494;
 }
 
-section > h2:first-child {
+body > section > h2:first-child {
   margin-top: 0;
 }
 
@@ -84,7 +87,7 @@ h3 {
 
 /* Footer */
 
-footer {
+body > footer {
   margin-bottom: 0;
   text-align: center;
   font-size: 80%;
@@ -111,6 +114,8 @@ figure {
   text-align: center;
 }
 
+/* Tables */
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -121,7 +126,7 @@ table {
 tr {
   vertical-align: top;
 }
-tr:nth-child(odd) {
+tr:nth-child(even) {
   background-color: #eeeeec;
 }
 
@@ -143,6 +148,7 @@ table ul {
   padding-left: 1em;
 }
 
+/* Properties lists */
 
 dl.properties dt {
   float: left;
@@ -158,6 +164,8 @@ dl.properties dd {
   margin: 0 0 0 110px;
   padding: 0 0 0.5em 0;
 }
+
+/* Links list */
 
 dl.links dt {
   clear: left;
@@ -177,8 +185,7 @@ dl.links dd {
   font-size: small;
 }
 
-
-/* Specific elements */
+/* Miscelaneous elements */
 
 #query {
   width: 80%;
@@ -190,20 +197,12 @@ dl.links dd {
 }
 
 .description {
-  font-size: 80%;
+  font-size: small;
 }
 
-.sparql-definition {
-  font-size: 80%;
-}
-
-.sparql-more {
+.more {
   text-align: right;
   margin-top: 0;
-}
-
-.pb_eav_v_type_iri, .allowed_triple_ops {
-  display: none;
 }
 
 /* vim:set ts=2 sw=2 et: */

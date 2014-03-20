@@ -43,7 +43,7 @@ function doSearchType(short, type) {
   sparql += '}';
   $("#" + short + "results")
     .empty()
-    .append('<p class="sparql-more"><a href="/sparql?' +
+    .append('<p class="more"><a href="/sparql?' +
             $.param({
               'query': sparql,
               'default-graph-uri': "http://mdr.testproject.eu/",

@@ -88,7 +88,7 @@
 
       <footer>
         <p>This work is supported by
-        <a href="http://ec.europa.eu/isa/actions/01-trusted-information-exchange/1-1action_en.htm" target="_blank">Action 1.1</a>
+        <a href="http://ec.europa.eu/isa/actions/02-interoperability-architecture/2-15action_en.htm" target="_blank">Action 2.15</a>
         of the
         <a href="http://ec.europa.eu/isa/" target="_blank">Interoperability Solutions
         for European Public Adminstrations (ISA)</a> Programme of the European
@@ -113,29 +113,44 @@
           <a href="http://ec.europa.eu/isa/" target="_blank"><img alt="isa" src="http://joinup.ec.europa.eu/sites/default/files/ckeditor_files/images/isa_logo.png" width="70" height="70" /></a>
         </p>
       </footer>
+      <script type="text/javascript"><xsl:text>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-38243808-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </xsl:text></script>
       </body>
     </html>
   </xsl:template>
 
   <xsl:template name="results">
     <table>
-      <tr>
-        <th>
-          <xsl:choose>
-            <xsl:when test="//res:head/res:variable[@name='dec']">
-              <xsl:text>Data Element Concepts</xsl:text>
-            </xsl:when>
-            <xsl:when test="//res:head/res:variable[@name='class']">
-              <xsl:text>Object Classes</xsl:text>
-            </xsl:when>
-          </xsl:choose>
-        </th>
-      </tr>
-      <xsl:for-each select="res:results/res:result">
+      <thead>
         <tr>
-          <xsl:apply-templates select="."/>
+          <th>
+            <xsl:choose>
+              <xsl:when test="//res:head/res:variable[@name='dec']">
+                <xsl:text>Data Element Concepts</xsl:text>
+              </xsl:when>
+              <xsl:when test="//res:head/res:variable[@name='class']">
+                <xsl:text>Object Classes</xsl:text>
+              </xsl:when>
+            </xsl:choose>
+          </th>
         </tr>
-      </xsl:for-each>
+      </thead>
+      <tbody>
+        <xsl:for-each select="res:results/res:result">
+          <tr>
+            <xsl:apply-templates select="."/>
+          </tr>
+        </xsl:for-each>
+      </tbody>
     </table>
   </xsl:template>
 
@@ -168,7 +183,7 @@
         </xsl:choose>
       </a>
       <!-- Definition -->
-      <div class="sparql-definition">
+      <div class="description">
         <xsl:value-of select="res:binding[@name='definition']/literal" />
       </div>
     </td>
