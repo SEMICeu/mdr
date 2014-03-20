@@ -144,21 +144,39 @@ table ul {
 }
 
 
-dt {
+dl.properties dt {
   float: left;
   clear: left;
   width: 100px;
   text-align: right;
   font-weight: 300;
 }
-dt:after {
+dl.properties dt:after {
   content: ":";
 }
-
-dd {
+dl.properties dd {
   margin: 0 0 0 110px;
   padding: 0 0 0.5em 0;
 }
+
+dl.links dt {
+  clear: left;
+  margin-left: 30px;
+  margin-top: 1em;
+}
+dl.links dt.join {
+  margin-top: .5em;
+}
+dl.links dt > img:first-child {
+  float: left;
+  margin-top: 5px;
+  margin-left: -30px;
+}
+dl.links dd {
+  margin-left: 30px;
+  font-size: small;
+}
+
 
 /* Specific elements */
 
@@ -169,6 +187,10 @@ dd {
 .error {
   color: #a40000;
   font-weight: 600;
+}
+
+.description {
+  font-size: 80%;
 }
 
 .sparql-definition {

@@ -138,7 +138,7 @@
   <xsl:template name="info">
     <h2><xsl:call-template name="target-label" /></h2>
     <xsl:call-template name="target-description" />
-    <dl>
+    <dl class="properties">
       <dt>URI</dt>
       <dd><a href="{$target}"><xsl:value-of select="$target" /></a></dd>
       <xsl:variable name="type" select="//res:result[res:binding[@name='p']='http://www.w3.org/1999/02/22-rdf-syntax-ns#type']" />
