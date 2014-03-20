@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>e-Document engineering pilot</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,300" />
+  <link rel="stylesheet" type="text/css" href="css/screen.css" />
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="https://www.semic.eu">
+      <img src="images/semic_logo.png" alt="SEMIC logo" width="90" height="90" />
+    </a>
+  </div>
+  <h1>e-Document engineering pilot</h1>
+  <p class="subtitle">Using a metadata registry for e-Document engineering</p>
+</header>
+
+<section id="introduction">
+  <h2>Introduction</h2>
+
+  <p>This page describes a mini-pilot on e-Document engineering that was carried out in the context of <a href="http://ec.europa.eu/isa/actions/02-interoperability-architecture/2-15action_en.htm" target="_blank">Action 2.15</a> of the ISA Programme in the period February – March 2014. The pilot was conducted in collaboration with the <a href="http://www.esens.eu">e-SENS</a> WP6.2 Competence Cluster on Semantics, processes and Documents. The objectives of the pilot are:</p>
+  <ol>
+    <li>To demonstrate how a metadata registry, a common library of data elements and mappings, can help to reduce semantic interoperability conflicts; and</li>
+    <li>To demonstrate the use of a standard e-Document engineering method to create e-Document formats in close connection with the metadata registry.</li>
+  </ol>
+
+  <p>The metadata registry documents the data element concepts and the data
+  elements (as identified in the information requirements). The goals,
+  requirements and business rules are also added to the metadata registry. The
+  whole process is then stored in a triplestore, in order to generate a
+  spreadsheet or to directly create a .XSD file. This approach offers complete
+  traceability: from the requirements over the semantics to the syntax.</p>
+
+  <h3 id="pilot">Pilot: activity registration</h3>
+  <p>Our pilot on e-Document engineering uses the example of the activity registration of a business in a foreign Member State. The example was provided by <a href="http://www.esens.eu">e-SENS</a> WP5.4 on Business lifecycle piloting. On this page we only pilot the use of the e-Document engineering method to generate e-Document specifications. The actual Activity Registration pilot will be conducted later on by the <a href="http://www.esens.eu">e-SENS</a> large-scale pilot.</p>
+
+  <figure>
+    <a href="images/activity-registration-BPMN.png">
+      <img src="images/activity-registration-BPMN.png"
+           alt="BPMN diagram"
+           width="600" />
+    </a>
+  </figure>
+
+  <h3 id="documentation">Documentation</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>file / link</th>
+        <th>description</th>
+      </tr>
+    </thead>
+   <tbody>
+      <tr>
+        <td><a href="/downloads/Report-_-e-Document_Engineering_Methods_-_guidelines.docx">Report: e-Document engineering guidelines for public adminstrations (.docx)</a></td>
+        <td>The report commissioned by the ISA Programme of the European Commission as part of its action 2.15 on e-Documents.</td>
+      </tr>
+      <tr>
+        <td><a href="mdr.owl">mdr.owl</a></td>
+        <td>OWL ontology inspired by the <a href="http://en.wikipedia.org/wiki/ISO/IEC_11179">ISO 11179-3</a> Metadata Registry standard.</td>
+      </tr>
+      <tr>
+        <td><a href="/downloads/e-Document_Engineering_Methods_-_Template_Activity_Registration.xlsx">e-Document Engineering Methods - Template Activity_Registration (.xlsx)</a></td>
+        <td>The first three steps of the blueprint for the activity registration pilot are mapped in a spreadsheet template.</td>
+      </tr>
+      <tr>
+        <td><a href="/downloads/e-Document_Engineering_Methods_-_Pilot_Activity_Registration.pptx">e-Document Engineering Methods - Pilot Activity Registration (.pptx)</a></td>
+        <td>A presentation of the e-Document engineering method and the Activity Registration pilot.</td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/SEMICeu/mdr">https://github.com/SEMICeu/mdr</a></td>
+        <td>Source code of the mini-pilot and this site.</td>
+      </tr>
+      <tr>
+        <td><a href="http://www.cranesoftwrights.com/resources/ubl/index.htm#gc2ublndr">Crane Software GC-to-UBL NDR script</a><br/><a href="/downloads/BusinessActivityRegistrationRequest.ods">BusinessActivityRegistrationRequest.ods</a><br/><a href="/downloads/BusinessActivityRegistrationRequest.xsd">BusinessActivityRegistrationRequest.xsd</a></td>
+        <td>Script that was used to generate XML Schemas.<br/>Open Document Spreadsheet that was input to the script.<br/>XML Schema that was obtained as output to the script.</td>
+      </tr>
+      <tr>
+        <td><a href="http://virtuoso.openlinksw.com">OpenLink Virtuoso</a></td>
+        <td>RDF graph store that was used to create the Metadata Registry.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="registry">
+  <h2>Part I. Create and browse the metadata registry</h2>
+  <div>
+    <form id="searchform">
+      <input id="query" type="text" />
+      <input type="submit" value="Search" />
+    </form>
+  </div>
+  <div id="classresults"></div>
+  <div id="decresults"></div>
+</section>
+
+<section id="methodology">
+  <h2>Part II. Apply the e-Document engineering methodology</h2>
+  <p>We use a standard e-Document engineering method that is largely based on the CEN/BII method for e-Document engineering. It can be presented as follows:</p>
+
+  <figure>
+    <img src="images/blueprint_engineermethod.png"
+         alt="Blueprint of the e-Document engineering method"
+         width="600" />
+  </figure>
+
+  <h3>1. Requirement Gathering</h3>
+  <p>The first step is to define the <em>objective</em> of the business process.
+  The specific <strong>goals</strong> to be achieved with the exchange of
+  e-Documents, along with their <strong>scope</strong> are described. The
+  business process is then illustrated with <strong>key examples</strong> of
+  real-life scenarios and the specific <strong>requirements</strong> linked to
+  the goals are derived.</p>
+  <div id="example-goals"></div>
+  <div id="example-transactions"></div>
+  <div id="example-requirements"></div>
+
+  <h3>2. Information Modelling</h3>
+  <p>The <em>information modelling</em> phase identifies and describes the
+  information to be exchanged according to the requirements. The attributes and
+  cardinalities of the <strong>data elements</strong> are described, along with
+  the relationships between the information components and the requirements. The
+  information model requirements are depicted using a conceptual modelling
+  language (ISO11179 MDR). Semantics and concepts from standard vocabularies are
+  reused wherever possible.</p>
+  <div id="example-elements"></div>
+
+  <h3>3. Business rule definition</h3>
+  <p><strong>Assertions, constraints and derivations</strong> related to aspects
+  of e-Documents are described in the <em>business rules</em>, in terms of the
+  goals and requirements identified in the first phase.</p>
+  <div id="example-rules"></div>
+
+  <p>Finally, there are two options to <em>produce physical artefacts</em> to
+  help developers implement the e-Documents according to the format rules:</p>
+
+  <h3>4. Syntax binding</h3>
+  <p>The first option is <em>syntax binding</em>, where the information
+  requirement model is mapped to an <strong>existing syntax</strong> model and
+  the usage guidelines are specified.</p>
+
+  <h3>5. Schema production</h3>
+  <p>The second option is to produce a <strong>new</strong> e-Document format.
+  Schema production should be applied when there are no recognized international
+  standards for the industry and business process the project is targeting.</p>
+</section>
+
+<footer>
+  <p>This work is supported by
+  <a href="http://ec.europa.eu/isa/actions/02-interoperability-architecture/2-15action_en.htm" target="_blank">Action 2.15</a>
+  of the
+  <a href="http://ec.europa.eu/isa/" target="_blank">Interoperability Solutions
+  for European Public Adminstrations (ISA)</a> Programme of the European
+  Commission.</p>
+
+  <p><strong>Linked Data pilots:</strong>
+    <a href="http://location.testproject.eu/BEL">Core Location pilot</a> |
+    <a href="http://cpsv.testproject.eu/CPSV">Core Public Service pilot</a> |
+    <a href="http://org.testproject.eu/MAREG">Organisation Ontology pilot</a> |
+    <a href="http://health.testproject.eu/PPP">Plant Protection Products pilot</a> |
+    <a href="http://maritime.testproject.eu/CISE">Maritime Surveillance pilot</a>
+  </p>
+
+  <p>
+    <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/description" target="_blank"><img alt="DCAT application profile for European data portals" src="https://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" /></a>
+    <a href="https://joinup.ec.europa.eu/asset/adms/description" target="_blank"><img alt="Asset Description Metadata Schema (ADMS)" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/adms_logo.png" width="70" height="70" /></a>
+    <a href="https://joinup.ec.europa.eu/asset/adms_foss/description" target="_blank"><img alt="Asset Description Metadata Schema for Software (ADMS.SW)" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/ADMS_SW_Logo.png" width="70" height="70" /></a>
+    <a href="https://joinup.ec.europa.eu/asset/core_business/description" target="_blank"><img alt="Core Business Vocabulary" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/core_business_logo.png" width="70" height="70" /></a>
+    <a href="https://joinup.ec.europa.eu/asset/core_person/description"><img alt="Core Person Vocabulary" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/core_person_logo.png" width="70" height="70" /></a>
+    <a href="https://joinup.ec.europa.eu/asset/core_location/description" target="_blank"><img alt="Core Location Vocabulary" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/core_location_logo.png" width="70" height="70" /></a>
+    <a href="https://joinup.ec.europa.eu/asset/core_public_service/description" target="_blank"><img alt="Core Public Service Vocabulary" src="https://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/core_public_service_logo.png" width="70" height="70" /></a>
+    <a href="http://ec.europa.eu/isa/" target="_blank"><img alt="isa" src="http://joinup.ec.europa.eu/sites/default/files/ckeditor_files/images/isa_logo.png" width="70" height="70" /></a>
+  </p>
+</footer>
+
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38243808-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
+<!-- vim:set ts=2 sw=2 et: -->

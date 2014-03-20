@@ -1,0 +1,459 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY dcterms "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://mdr.semic.eu/def#"
+     xml:base="http://mdr.semic.eu/def"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:dcterms="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="http://mdr.testproject.eu/def">
+        <rdfs:comment>The Metadata Registry Ontology is an implementation of the ISO 11179-3 meta-model for describing data elements.</rdfs:comment>
+        <dc:title>Metadata Registry Ontology</dc:title>
+        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+    <owl:AnnotationProperty rdf:about="&dc;title"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://mdr.testproject.eu/def#affects -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#affects">
+        <rdfs:label>affects</rdfs:label>
+        <rdfs:comment>States that the business rule affects (defines or constraints) a data element concept.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#BusinessRule"/>
+        <rdfs:range rdf:resource="http://mdr.testproject.eu/def#DataElementConcept"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#conceptualDomain -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#conceptualDomain">
+        <rdfs:label>has conceptual domain</rdfs:label>
+        <rdfs:comment>The Conceptual Domain of the Data Element Concept.</rdfs:comment>
+        <rdfs:range rdf:resource="http://mdr.testproject.eu/def#ConceptualDomain"/>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#DataElementConcept"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#contains -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#contains">
+        <rdfs:label>contains</rdfs:label>
+        <rdfs:comment>A Value Meaning or Permissible Value contained respectively in a Enumerated Conceptual Domain or Enumerated Value Domain.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#context -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#context">
+        <rdfs:label>has context</rdfs:label>
+        <rdfs:comment>The context of the element.</rdfs:comment>
+        <rdfs:range rdf:resource="http://mdr.testproject.eu/def#Context"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#datatype -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#datatype">
+        <rdfs:label>has datatype</rdfs:label>
+        <rdfs:comment>The datatype of the Value Domain, i.e., the set of distinct values, characterized by properties of those values and by operations on those values.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#ValueDomain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#expresses -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#expresses">
+        <rdfs:label>expresses</rdfs:label>
+        <rdfs:comment>The Data Element Concept that is expressed by the Data Element.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#DataElement"/>
+        <rdfs:range rdf:resource="http://mdr.testproject.eu/def#DataElementConcept"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#implements -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#implements">
+        <rdfs:label>implements</rdfs:label>
+        <rdfs:comment>States that a high-level requirement (partially) implements a goal, or that a data element concept or business rule (partially) implements a high-level requirement.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#meaning -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#meaning">
+        <rdfs:label>has meaning</rdfs:label>
+        <rdfs:comment>The Value Meaning of the Permissible Value.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#PermissibleValue"/>
+        <rdfs:range rdf:resource="http://mdr.testproject.eu/def#ValueMeaning"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#objectClass -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#objectClass">
+        <rdfs:label>object class</rdfs:label>
+        <rdfs:comment>The Object Class of the Data Element Concept.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#DataElementConcept"/>
+        <rdfs:range rdf:resource="http://mdr.testproject.eu/def#ObjectClass"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#property -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#property">
+        <rdfs:label>has property</rdfs:label>
+        <rdfs:comment>The Property of the Data Element Concept.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#DataElementConcept"/>
+        <rdfs:range rdf:resource="http://mdr.testproject.eu/def#Property"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#representedBy -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#representedBy">
+        <rdfs:label>is represented by</rdfs:label>
+        <rdfs:comment>The Value Domain that represents the Data Element.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#DataElement"/>
+        <rdfs:range rdf:resource="http://mdr.testproject.eu/def#ValueDomain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#represents -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.testproject.eu/def#represents">
+        <rdfs:label>represents</rdfs:label>
+        <rdfs:comment>The Conceptual Domain that is represented by the Value Domain.</rdfs:comment>
+        <rdfs:range rdf:resource="http://mdr.testproject.eu/def#ConceptualDomain"/>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#ValueDomain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://mdr.testproject.eu/def#rationale -->
+
+    <owl:DatatypeProperty rdf:about="http://mdr.testproject.eu/def#rationale">
+        <rdfs:label>rationale</rdfs:label>
+        <rdfs:comment>The rationale of a requirement.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#Requirement"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#value -->
+
+    <owl:DatatypeProperty rdf:about="http://mdr.testproject.eu/def#value">
+        <rdfs:label>has value</rdfs:label>
+        <rdfs:comment>The concrete representation of the Permissible Value.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://mdr.testproject.eu/def#PermissibleValue"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://mdr.testproject.eu/def#BusinessRule -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#BusinessRule">
+        <rdfs:label>Business Rule</rdfs:label>
+        <rdfs:comment>Statement that defines or constrains some aspect of the e-Document.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#ConceptualDomain -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#ConceptualDomain">
+        <rdfs:label>Conceptual Domain</rdfs:label>
+        <rdfs:comment>A set of valid Value Meanings.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#Context -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#Context">
+        <rdfs:label>Context</rdfs:label>
+        <rdfs:comment>Universe of discourse.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#DataElement -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#DataElement">
+        <rdfs:label>Data Element</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#expresses"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#representedBy"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A unit of data for which the definition, identification, representation and Permissible Values are specified by means of a set of attributes.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#DataElementConcept -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#DataElementConcept">
+        <rdfs:label>Data Element Concept</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#property"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#conceptualDomain"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#objectClass"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A concept that can be represented in the form of a Data Element, described independently of any particular representation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#EnumeratedConceptualDomain -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#EnumeratedConceptualDomain">
+        <rdfs:label>Enumerated Conceptual Domain</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://mdr.testproject.eu/def#ConceptualDomain"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#contains"/>
+                <owl:someValuesFrom rdf:resource="http://mdr.testproject.eu/def#ValueMeaning"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A Conceptual Domain that is specified by a list of all its Value Meanings.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#EnumeratedValueDomain -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#EnumeratedValueDomain">
+        <rdfs:label>Enumerated Value Domain</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://mdr.testproject.eu/def#ValueDomain"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#contains"/>
+                <owl:someValuesFrom rdf:resource="http://mdr.testproject.eu/def#PermissibleValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A Value Domain that is specified by a list of all its Permissible Values.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#Format -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#Format">
+        <rdfs:label>e-Document Format</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://mdr.testproject.eu/def#Context"/>
+        <rdfs:comment>An e-Document format.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#Goal -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#Goal">
+        <rdfs:label>Goal</rdfs:label>
+        <rdfs:comment>A goal that has to be achieved with the exchange of e-Documents.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#Library -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#Library">
+        <rdfs:label>Library of data elements</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://mdr.testproject.eu/def#Context"/>
+        <rdfs:comment>A library of data elements.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#NonEnumeratedConceptualDomain -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#NonEnumeratedConceptualDomain">
+        <rdfs:label>Non-Enumerated Conceptual Domain</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://mdr.testproject.eu/def#ConceptualDomain"/>
+        <rdfs:comment>A Conceptual Domain that is specified by a description rather than a list of all valid Value Meanings.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#NonEnumeratedValueDomain -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#NonEnumeratedValueDomain">
+        <rdfs:label>Non-Enumerated Value Domain</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://mdr.testproject.eu/def#ValueDomain"/>
+        <rdfs:comment>A Value Domain that is specified by a description rather than a list of all Permissible Values.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#ObjectClass -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#ObjectClass">
+        <rdfs:label>Object Class</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://mdr.testproject.eu/def#NonEnumeratedConceptualDomain"/>
+        <rdfs:comment>A set of ideas, abstractions, or things in the real world that are identified with explicit boundaries and meaning and whose properties and behaviour follow the same rules.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#PermissibleValue -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#PermissibleValue">
+        <rdfs:label>Permissible Value</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#value"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#meaning"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>An expression of a Value Meaning allowed in a specific Value Domain.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#Property -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#Property">
+        <rdfs:label>Property</rdfs:label>
+        <rdfs:comment>A characteristic common to all members of an Object Class.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#Requirement -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#Requirement">
+        <rdfs:label>High-level Requirement</rdfs:label>
+        <rdfs:comment>A high-level requirement that the e-Document format must fulfill.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#ValueDomain -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#ValueDomain">
+        <rdfs:label>Value Domain</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://mdr.testproject.eu/def#represents"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A set of Permissible Values.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://mdr.testproject.eu/def#ValueMeaning -->
+
+    <owl:Class rdf:about="http://mdr.testproject.eu/def#ValueMeaning">
+        <rdfs:label>Value Meaning</rdfs:label>
+        <rdfs:comment>The meaning or semantic content of a Value.</rdfs:comment>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
