@@ -121,12 +121,19 @@
 
         <p>
           <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/description" target="_blank"><img alt="DCAT application profile for European data portals" src="https://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" /></a>
+          <xsl:text> </xsl:text>
           <a href="https://joinup.ec.europa.eu/asset/adms/description" target="_blank"><img alt="Asset Description Metadata Schema (ADMS)" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/adms_logo.png" width="70" height="70" /></a>
+          <xsl:text> </xsl:text>
           <a href="https://joinup.ec.europa.eu/asset/adms_foss/description" target="_blank"><img alt="Asset Description Metadata Schema for Software (ADMS.SW)" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/ADMS_SW_Logo.png" width="70" height="70" /></a>
+          <xsl:text> </xsl:text>
           <a href="https://joinup.ec.europa.eu/asset/core_business/description" target="_blank"><img alt="Core Business Vocabulary" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/core_business_logo.png" width="70" height="70" /></a>
+          <xsl:text> </xsl:text>
           <a href="https://joinup.ec.europa.eu/asset/core_person/description"><img alt="Core Person Vocabulary" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/core_person_logo.png" width="70" height="70" /></a>
+          <xsl:text> </xsl:text>
           <a href="https://joinup.ec.europa.eu/asset/core_location/description" target="_blank"><img alt="Core Location Vocabulary" src="http://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/core_location_logo.png" width="70" height="70" /></a>
+          <xsl:text> </xsl:text>
           <a href="https://joinup.ec.europa.eu/asset/core_public_service/description" target="_blank"><img alt="Core Public Service Vocabulary" src="https://joinup.ec.europa.eu/sites/default/files/imagecache/community_logo/core_public_service_logo.png" width="70" height="70" /></a>
+          <xsl:text> </xsl:text>
           <a href="http://ec.europa.eu/isa/" target="_blank"><img alt="isa" src="http://joinup.ec.europa.eu/sites/default/files/ckeditor_files/images/isa_logo.png" width="70" height="70" /></a>
         </p>
       </footer>
@@ -157,18 +164,13 @@
         <xsl:variable name="type-uri" select="$type/res:binding[@name='o']" />
         <xsl:variable name="type-label" select="$type/res:binding[@name='olabel']" />
         <dt>Type</dt>
-        <dd><a>
-          <xsl:attribute name="href">
-            <xsl:call-template name="resolve-uri">
-              <xsl:with-param name="uri" select="$type-uri" />
-            </xsl:call-template>
-          </xsl:attribute>
+        <dd>
           <xsl:call-template name="label-or-value">
             <xsl:with-param name="value" select="$type-uri" />
             <xsl:with-param name="label" select="$type-label" />
             <xsl:with-param name="strip-uri" select="true()" />
           </xsl:call-template>
-        </a></dd>
+        </dd>
       </xsl:if>
       <dt>Raw data</dt>
       <dd><a>
