@@ -7,7 +7,7 @@ This repository contains the source code of the mini-pilot on e-Document
 engineering that was carried out in the context of [Action 2.15][] of the
 ISA Programme in the period February – March 2014.
 
-The pilot is available on <http://mdr.testproject.eu/>.
+The pilot is available on <http://mdr.semic.eu/>.
 
 [Action 2.15]: http://ec.europa.eu/isa/actions/02-interoperability-architecture/2-15action_en.htm
 
@@ -18,7 +18,7 @@ Contents
 Directory          | Description
 -------------------|-----------------------------------------------------------
 [scripts](scripts) | Collection of Python scripts used to import to and export from the MDR
-[www](www)         | Root directory of the <http://mdr.testproject.eu/> website
+[www](www)         | Root directory of the <http://mdr.semic.eu/> website
 
 
 Licence

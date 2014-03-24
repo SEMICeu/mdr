@@ -2,7 +2,7 @@
 <!--
   Known namespaces for use by about.xsl
 -->
-<namespaces xmlns="http://testproject.eu/namespaces">
+<namespaces xmlns="http://semic.eu/namespaces">
   <namespace>
     <prefix>rdf</prefix>
     <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
@@ -41,6 +41,6 @@
   </namespace>
   <namespace>
     <prefix>mdr</prefix>
-    <uri>http://mdr.testproject.eu/def#</uri>
+    <uri>http://mdr.semic.eu/def#</uri>
   </namespace>
 </namespaces>

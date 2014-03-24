@@ -42,12 +42,12 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:res="http://www.w3.org/2005/sparql-results#"
-  xmlns:ns="http://testproject.eu/namespaces"
+  xmlns:ns="http://semic.eu/namespaces"
   exclude-result-prefixes="xsl res ns">
 
   <xsl:output method="html" indent="yes" encoding="UTF-8" />
 
-  <xsl:variable name="namespaces" select="document('http://mdr.testproject.eu/namespaces.xml')" />
+  <xsl:variable name="namespaces" select="document('http://mdr.semic.eu/namespaces.xml')" />
 
   <xsl:variable name="target" select="//res:result/res:binding[@name='target'][1]" />
 

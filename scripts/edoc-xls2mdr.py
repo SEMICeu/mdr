@@ -30,7 +30,7 @@ import rdflib
 
 from rdflib import URIRef, Literal
 from rdflib.namespace import RDF, RDFS, DCTERMS, SKOS
-MDR = rdflib.Namespace("http://mdr.testproject.eu/def#")
+MDR = rdflib.Namespace("http://mdr.semic.eu/def#")
 
 
 class EDocumentSpreadsheet:
@@ -162,7 +162,7 @@ if __name__ == "__main__":
     ap.description = "Convert a spreadsheet to MDR RDF."
     ap.add_argument("xlsfile", help="input XLS(X) file")
     ap.add_argument("-N", "--namespace",
-                    default="http://mdr.testproject.eu/id/mycontext/",
+                    default="http://mdr.semic.eu/id/mycontext/",
                     help="output namespace (default: %(default)s)")
     ap.add_argument("-f", "--format", default="turtle",
                     help="serialization format (default: %(default)s)")

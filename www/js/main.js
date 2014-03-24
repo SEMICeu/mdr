@@ -26,7 +26,7 @@ $.fn.filterfind = function(selector) {
 
 function doSearchType(short, type) {
   var query = $("#query").val();
-  var sparql = 'SELECT * WHERE { ?' + short + ' a mdr:' + type + ' ' +
+  var sparql = 'SELECT DISTINCT * WHERE { ?' + short + ' a mdr:' + type + ' ' +
                'OPTIONAL { ?' + short + ' mdr:context ?context ' +
                           'OPTIONAL { ?context rdfs:label ?contextname } } ' +
                'OPTIONAL { ?' + short + ' rdfs:label ?label } ' +
@@ -46,18 +46,16 @@ function doSearchType(short, type) {
     .append('<p class="more"><a href="/sparql?' +
             $.param({
               'query': sparql,
-              'default-graph-uri': "http://mdr.testproject.eu/",
               'format': "application/sparql-results+xml",
-              'xslt-uri': "http://mdr.testproject.eu/search.xsl"
+              'xslt-uri': "http://mdr.semic.eu/search.xsl"
             }) +
             '">See all results &raquo;</a></p>');
   var sparql_limited = sparql + ' LIMIT 10';
   console.log("Executing query: " + sparql_limited);
   $.get("/sparql", {
     'query': sparql_limited,
-    'default-graph-uri': "http://mdr.testproject.eu/",
     'format': "application/sparql-results+xml",
-    'xslt-uri': "http://mdr.testproject.eu/search.xsl"
+    'xslt-uri': "http://mdr.semic.eu/search.xsl"
   }, function(data) {
     $("#" + short + "results")
       .prepend($(data).filterfind("#results").contents());
@@ -74,9 +72,8 @@ function fillExample(key, sparql) {
   console.log("Executing query: " + sparql);
   $.get("/sparql", {
     'query': sparql,
-    'default-graph-uri': "http://mdr.testproject.eu/",
     'format': "application/sparql-results+xml",
-    'xslt-uri': "http://mdr.testproject.eu/sparql-table.xsl"
+    'xslt-uri': "http://mdr.semic.eu/sparql-table.xsl"
   }, function(data) {
     $(select).prepend($(data).filterfind("#results").contents());
   });
@@ -88,11 +85,11 @@ $(function() {
     event.preventDefault();
   });
   doSearch();
-  fillExample('goals', 'SELECT ?id ?name ?description WHERE { ?id a mdr:Goal ; rdfs:label ?name ; rdfs:comment ?description } ORDER BY ?id');
-  fillExample('transactions', 'SELECT ?id ?name ?description ?goal WHERE { ?id a mdr:Transaction ; rdfs:label ?name ; rdfs:comment ?description ; mdr:implements ?goal } ORDER BY ?id ?goal');
-  fillExample('requirements', 'SELECT ?id ?name ?statement ?rationale ?transaction ?goal WHERE { ?id a mdr:Requirement ; rdfs:label ?name ; skos:definition ?statement ; mdr:rationale ?rationale ; dct:isPartOf ?transaction ; mdr:implements ?goal } ORDER BY ?id ?goal');
-  fillExample('elements', 'SELECT ?id ?name ?definition ?transaction ?requirement WHERE { ?id a mdr:DataElementConcept ; rdfs:label ?name ; skos:definition ?definition ; dct:isPartOf ?transaction ; mdr:implements ?requirement } ORDER BY ?id');
-  fillExample('rules', 'SELECT ?id ?rule ?transaction ?ir ?requirement WHERE { ?id a mdr:BusinessRule ; skos:definition ?rule ; dct:isPartOf ?transaction ; mdr:affects ?ir ; mdr:implements ?requirement } ORDER BY ?id');
+  fillExample('goals', 'SELECT DISTINCT ?id ?name ?description WHERE { ?id a mdr:Goal ; rdfs:label ?name ; rdfs:comment ?description } ORDER BY ?id');
+  fillExample('transactions', 'SELECT DISTINCT ?id ?name ?description ?goal WHERE { ?id a mdr:Transaction ; rdfs:label ?name ; rdfs:comment ?description ; mdr:implements ?goal } ORDER BY ?id ?goal');
+  fillExample('requirements', 'SELECT DISTINCT ?id ?name ?statement ?rationale ?transaction ?goal WHERE { ?id a mdr:Requirement ; rdfs:label ?name ; skos:definition ?statement ; mdr:rationale ?rationale ; dct:isPartOf ?transaction ; mdr:implements ?goal } ORDER BY ?id ?goal');
+  fillExample('elements', 'SELECT DISTINCT ?id ?name ?definition ?transaction ?requirement WHERE { ?id a mdr:DataElementConcept ; rdfs:label ?name ; skos:definition ?definition ; dct:isPartOf ?transaction ; mdr:implements ?requirement } ORDER BY ?id');
+  fillExample('rules', 'SELECT DISTINCT ?id ?rule ?transaction ?ir ?requirement WHERE { ?id a mdr:BusinessRule ; skos:definition ?rule ; dct:isPartOf ?transaction ; mdr:affects ?ir ; mdr:implements ?requirement } ORDER BY ?id');
 });
 
 /* vim:set ts=2 sw=2 et: */
