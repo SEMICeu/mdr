@@ -64,7 +64,7 @@ function doSearchType(short, type) {
 
 function doSearch() {
   doSearchType("class", "ObjectClass");
-  doSearchType("dec", "DataElementConcept");
+  doSearchType("element", "DataElement");
 }
 
 function fillExample(key, sparql) {
@@ -87,9 +87,9 @@ $(function() {
   doSearch();
   fillExample('goals', 'SELECT DISTINCT ?id ?name ?description WHERE { ?id a mdr:Goal ; rdfs:label ?name ; rdfs:comment ?description } ORDER BY ?id');
   fillExample('transactions', 'SELECT DISTINCT ?id ?name ?description ?goal WHERE { ?id a mdr:Transaction ; rdfs:label ?name ; rdfs:comment ?description ; mdr:implements ?goal } ORDER BY ?id ?goal');
-  fillExample('requirements', 'SELECT DISTINCT ?id ?name ?statement ?rationale ?transaction ?goal WHERE { ?id a mdr:Requirement ; rdfs:label ?name ; skos:definition ?statement ; mdr:rationale ?rationale ; dct:isPartOf ?transaction ; mdr:implements ?goal } ORDER BY ?id ?goal');
-  fillExample('elements', 'SELECT DISTINCT ?id ?name ?definition ?transaction ?requirement WHERE { ?id a mdr:DataElementConcept ; rdfs:label ?name ; skos:definition ?definition ; dct:isPartOf ?transaction ; mdr:implements ?requirement } ORDER BY ?id');
-  fillExample('rules', 'SELECT DISTINCT ?id ?rule ?transaction ?ir ?requirement WHERE { ?id a mdr:BusinessRule ; skos:definition ?rule ; dct:isPartOf ?transaction ; mdr:affects ?ir ; mdr:implements ?requirement } ORDER BY ?id');
+  fillExample('requirements', 'SELECT DISTINCT ?id ?name ?statement ?rationale ?transaction ?goal WHERE { ?id a mdr:HighLevelRequirement ; rdfs:label ?name ; skos:definition ?statement ; mdr:rationale ?rationale ; mdr:transaction ?transaction ; mdr:implements ?goal } ORDER BY ?id ?goal');
+  fillExample('information', 'SELECT DISTINCT ?id ?name ?definition ?transaction ?requirement WHERE { ?id a mdr:InformationRequirement ; rdfs:label ?name ; skos:definition ?definition ; mdr:transaction ?transaction ; mdr:implements ?requirement } ORDER BY ?id');
+  fillExample('rules', 'SELECT DISTINCT ?id ?rule ?transaction ?ir ?requirement WHERE { ?id a mdr:BusinessRule ; skos:definition ?rule ; mdr:transaction ?transaction ; mdr:affects ?ir ; mdr:implements ?requirement } ORDER BY ?id');
 });
 
 /* vim:set ts=2 sw=2 et: */

@@ -29,7 +29,7 @@ import xlrd
 import rdflib
 
 from rdflib import URIRef, Literal
-from rdflib.namespace import RDF, RDFS, DCTERMS, SKOS
+from rdflib.namespace import RDF, RDFS, SKOS
 MDR = rdflib.Namespace("http://mdr.semic.eu/def#")
 
 
@@ -86,12 +86,11 @@ class EDocumentSpreadsheet:
         g = rdflib.Graph()
         g.bind("skos", str(SKOS))
         g.bind("mdr", str(MDR))
-        g.bind("dcterms", str(DCTERMS))
-        g.add((URIRef(self.ns), RDF.type, MDR.Format))
+        g.add((URIRef(self.ns), RDF.type, MDR.Context))
         self.convert_goals(g)
         self.convert_transactions(g)
         self.convert_requirements(g)
-        self.convert_elements(g)
+        self.convert_information(g)
         self.convert_rules(g)
         return g
 
@@ -120,28 +119,27 @@ class EDocumentSpreadsheet:
         graph g.'''
         for item in self.read_sheet("High Level Requirements", "Requirement"):
             uri = self.uri("requirement", item["identifier"])
-            g.add((uri, RDF.type, MDR.Requirement))
+            g.add((uri, RDF.type, MDR.HighLevelRequirement))
             g.add((uri, MDR.context, URIRef(self.ns)))
             g.add((uri, RDFS.label, self.text(item["name"])))
             g.add((uri, SKOS.definition, self.text(item["statement"])))
             g.add((uri, MDR.rationale, self.text(item["rationale"])))
             for goal in self.split(item["goals"]):
                 g.add((uri, MDR.implements, self.uri("goal", goal)))
-            g.add((uri, DCTERMS.isPartOf, self.uri("transaction", item["transaction"])))
+            g.add((uri, MDR.transaction, self.uri("transaction", item["transaction"])))
 
-    def convert_elements(self, g):
+    def convert_information(self, g):
         '''Add the contents of the 'Information Requirements' sheet to the
         graph g.'''
         for item in self.read_sheet("Information Requirements", "Information Requirement"):
             uri = self.uri("dec", item["identifier"])
-            g.add((uri, RDF.type, MDR.DataElementConcept))
+            g.add((uri, RDF.type, MDR.InformationRequirement))
             g.add((uri, MDR.context, URIRef(self.ns)))
             g.add((uri, RDFS.label, self.text(item["business term name"])))
             g.add((uri, SKOS.definition, self.text(item["usage"])))
             for req in self.split(item["high level requirements"]):
                 g.add((uri, MDR.implements, self.uri("requirement", req)))
-            g.add((uri, DCTERMS.isPartOf, self.uri("transaction", item["transaction"])))
-            g.add((uri, MDR.cardinality, Literal(item["cardinality"])))
+            g.add((uri, MDR.transaction, self.uri("transaction", item["transaction"])))
 
     def convert_rules(self, g):
         '''Add the contents of the 'Business Rules' sheet to the graph g.'''
@@ -154,7 +152,7 @@ class EDocumentSpreadsheet:
                 g.add((uri, MDR.affects, self.uri("dec", dec)))
             for req in self.split(item["high level requirements"]):
                 g.add((uri, MDR.implements, self.uri("requirement", req)))
-            g.add((uri, DCTERMS.isPartOf, self.uri("transaction", item["transaction"])))
+            g.add((uri, MDR.transaction, self.uri("transaction", item["transaction"])))
 
 
 if __name__ == "__main__":

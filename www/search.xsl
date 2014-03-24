@@ -37,11 +37,11 @@
   }
 
   SELECT DISTINCT * WHERE {
-    ?dec a mdr:DataElementConcept
-    OPTIONAL { ?dec mdr:context ?context
+    ?element a mdr:DataElement
+    OPTIONAL { ?element mdr:context ?context
                OPTIONAL { ?context rdfs:label ?contextname } }
-    OPTIONAL { ?dec rdfs:label ?label }
-    OPTIONAL { ?dec skos:definition ?definition }
+    OPTIONAL { ?element rdfs:label ?label }
+    OPTIONAL { ?element skos:definition ?definition }
     FILTER(CONTAINS(LCASE(STR(?label)), LCASE("%keyword%")) ||
            CONTAINS(LCASE(STR(?definition)), LCASE("%keyword%")))
   }
@@ -140,8 +140,8 @@
         <tr>
           <th>
             <xsl:choose>
-              <xsl:when test="//res:head/res:variable[@name='dec']">
-                <xsl:text>Data Element Concepts</xsl:text>
+              <xsl:when test="//res:head/res:variable[@name='element']">
+                <xsl:text>Data Elements</xsl:text>
               </xsl:when>
               <xsl:when test="//res:head/res:variable[@name='class']">
                 <xsl:text>Object Classes</xsl:text>
@@ -161,7 +161,7 @@
   </xsl:template>
 
   <xsl:template match="res:result">
-    <xsl:variable name="uri" select="res:binding[@name='dec' or @name='class']" />
+    <xsl:variable name="uri" select="res:binding[@name='class' or @name='element']" />
     <!-- Name or URI with hyperlink, and context -->
     <td>
       <xsl:if test="res:binding[@name='context']">
