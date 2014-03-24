@@ -17,8 +17,9 @@ Contents
 
 Directory          | Description
 -------------------|-----------------------------------------------------------
-[scripts](scripts) | Collection of Python scripts used to import to and export from the MDR
-[www](www)         | Root directory of the <http://mdr.semic.eu/> website
+[data](data)       | RDF data of the MDR. Some files have been auto-generated.
+[scripts](scripts) | Collection of Python scripts used to import to and export from the MDR.
+[www](www)         | Root directory of the <http://mdr.semic.eu/> website.
 
 
 Licence
