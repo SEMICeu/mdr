@@ -26,7 +26,8 @@ $.fn.filterfind = function(selector) {
 
 function doSearchType(short, type) {
   var query = $("#query").val();
-  var sparql = 'SELECT DISTINCT * WHERE { ?' + short + ' a mdr:' + type + ' ' +
+  var sparql = 'PREFIX mdr: <http://mdr.semic.eu/def#> ' +
+               'SELECT DISTINCT * WHERE { ?' + short + ' a mdr:' + type + ' ' +
                'OPTIONAL { ?' + short + ' mdr:context ?context ' +
                           'OPTIONAL { ?context rdfs:label ?contextname } } ' +
                'OPTIONAL { ?' + short + ' rdfs:label ?label } ' +
@@ -69,6 +70,7 @@ function doSearch() {
 
 function fillExample(key, sparql) {
   var select = "#example-" + key;
+  sparql = 'PREFIX mdr: <http://mdr.semic.eu/def#> ' + sparql
   console.log("Executing query: " + sparql);
   $.get("/sparql", {
     'query': sparql,
