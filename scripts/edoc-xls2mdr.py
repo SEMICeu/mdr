@@ -3,7 +3,8 @@
 # requirements, information requirements, and business rules, according to
 # the e-Document engineering methodology, to RDF satisfying the MDR vocabulary.
 #
-# Copyright 2014 PwC EU Services
+# Copyright 2014 European Union
+# Author: Vianney le Clément de Saint-Marcq (PwC EU Services)
 #
 # Licensed under the EUPL, Version 1.1 or - as soon they
 # will be approved by the European Commission - subsequent
