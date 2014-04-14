@@ -48,7 +48,7 @@ function doSearchType(short, type) {
             $.param({
               'query': sparql,
               'format': "application/sparql-results+xml",
-              'xslt-uri': "http://mdr.semic.eu/search.xsl"
+              'xslt-uri': "file://mdr/xslt/search.xsl"
             }) +
             '">See all results &raquo;</a></p>');
   var sparql_limited = sparql + ' LIMIT 10';
@@ -56,7 +56,7 @@ function doSearchType(short, type) {
   $.get("/sparql", {
     'query': sparql_limited,
     'format': "application/sparql-results+xml",
-    'xslt-uri': "http://mdr.semic.eu/search.xsl"
+    'xslt-uri': "file://mdr/xslt/search.xsl"
   }, function(data) {
     $("#" + short + "results")
       .prepend($(data).filterfind("#results").contents());
@@ -75,7 +75,7 @@ function fillExample(key, sparql) {
   $.get("/sparql", {
     'query': sparql,
     'format': "application/sparql-results+xml",
-    'xslt-uri': "http://mdr.semic.eu/sparql-table.xsl"
+    'xslt-uri': "file://mdr/xslt/sparql-table.xsl"
   }, function(data) {
     $(select).prepend($(data).filterfind("#results").contents());
   });

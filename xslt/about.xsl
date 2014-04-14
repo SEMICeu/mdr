@@ -47,7 +47,7 @@
 
   <xsl:output method="html" indent="yes" encoding="UTF-8" />
 
-  <xsl:variable name="namespaces" select="document('http://mdr.semic.eu/namespaces.xml')" />
+  <xsl:variable name="namespaces" select="document('file://mdr/xslt/namespaces.xml')" />
 
   <xsl:variable name="target" select="//res:result/res:binding[@name='target'][1]" />
 
