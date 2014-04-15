@@ -129,8 +129,7 @@
       <input type="submit" value="Search" />
     </form>
   </div>
-  <div id="classresults"></div>
-  <div id="elementresults"></div>
+  <div id="results"></div>
 </section>
 
 <section id="methodology">
@@ -236,7 +235,7 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-38243808-1']);
+  _gaq.push(['_setAccount', '%GOOGLE_ANALYTICS%']);
   _gaq.push(['_trackPageview']);
 
   (function() {
