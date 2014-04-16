@@ -83,7 +83,7 @@ query := sprintf('CONSTRUCT {
                   }', filter, limit, filter, limit);
 
 declare rset, triples, ses any;
-rset := DB.DBA.SPARQL_EVAL_TO_ARRAY(query, null, 0);
+rset := DB.DBA.SPARQL_EVAL_TO_ARRAY(query, '%DEFAULT_GRAPH%', 0);
 triples := dict_list_keys(rset[0][0], 1);
 ses := string_output();
 DB.DBA.RDF_TRIPLES_TO_RDF_XML_TEXT(triples, 1, ses);

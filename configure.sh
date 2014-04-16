@@ -25,6 +25,7 @@ set -e -u
 # Default values
 BASEURI="http://mdr.semic.eu/"
 ROOTURI="file://mdr/"
+DEFAULT_GRAPH="http://mdr.semic.eu/"
 GOOGLE_ANALYTICS="UA-38243808-1"
 
 GENERATE=true
@@ -38,6 +39,8 @@ Options:
   -b URI    The base URI (default: ${BASEURI})
   -r URI    The (internal) URI of the root directory
               (default: ${ROOTURI})
+  -g URI    Default graph URI for SPARQL queries
+              (default: ${DEFAULT_GRAPH})
   -a KEY    Google Analytics key (default: ${GOOGLE_ANALYTICS})
   -c        Remove generated files
   -h        This help screen
@@ -45,10 +48,11 @@ EOF
 }
 
 # Parse arguments
-while getopts 'b:r:a:ch' opt; do
+while getopts 'b:r:g:a:ch' opt; do
     case "${opt}" in
     b) BASEURI=${OPTARG%/}/ ;;
     r) ROOTURI=${OPTARG%/}/ ;;
+    g) DEFAULT_GRAPH=${OPTARG} ;;
     a) GOOGLE_ANALYTICS=${OPTARG} ;;
     c) GENERATE=false ;;
     h) usage ; exit 0 ;;
@@ -58,7 +62,7 @@ done
 
 # Construct sed replacement script
 sed=""
-for var in BASEURI ROOTURI GOOGLE_ANALYTICS; do
+for var in BASEURI ROOTURI DEFAULT_GRAPH GOOGLE_ANALYTICS; do
     eval "value=\$${var}"
     sed="${sed}s|%${var}%|${value}|g;"
 done
