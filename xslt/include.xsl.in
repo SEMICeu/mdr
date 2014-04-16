@@ -41,8 +41,9 @@
         <xsl:value-of select="string($subject/rdfs:label)" />
       </xsl:when>
       <xsl:otherwise>
-        <xsl:call-template name="strip-uri">
+        <xsl:call-template name="to-curie">
           <xsl:with-param name="uri" select="$subject-uri" />
+          <xsl:with-param name="strip" select="true()" />
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
