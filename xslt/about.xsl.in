@@ -41,73 +41,79 @@
 
   <!-- Main template -->
   <xsl:template name="content">
-    <section>
-      <xsl:call-template name="info" />
-    </section>
-    <section>
-      <h2>Properties</h2>
-      <xsl:call-template name="properties" />
-    </section>
-    <section>
-      <h2>Referenced by</h2>
-      <xsl:call-template name="inverse-properties" />
-    </section>
+    <xsl:call-template name="info" />
+    <xsl:call-template name="properties" />
+    <xsl:call-template name="inverse-properties" />
   </xsl:template>
 
   <!-- Print the information section -->
   <xsl:template name="info">
-    <!-- Header -->
-    <h2><xsl:value-of select="$subject-label" /></h2>
-    <!-- Description -->
-    <xsl:for-each select="$subject/rdfs:comment | $subject/dc:description | $subject/dcterms:description | $subject/skos:definition">
-      <p>
-        <xsl:call-template name="rdf-value">
-          <xsl:with-param name="element" select="." />
-        </xsl:call-template>
-      </p>
-    </xsl:for-each>
-    <!-- General RDF info -->
-    <xsl:call-template name="rdf-info" />
+    <section>
+      <!-- Header -->
+      <h2><xsl:value-of select="$subject-label" /></h2>
+      <!-- Description -->
+      <xsl:for-each select="$subject/rdfs:comment | $subject/dc:description | $subject/dcterms:description | $subject/skos:definition">
+        <p>
+          <xsl:call-template name="rdf-value">
+            <xsl:with-param name="element" select="." />
+          </xsl:call-template>
+        </p>
+      </xsl:for-each>
+      <!-- General RDF info -->
+      <xsl:call-template name="rdf-info" />
+    </section>
   </xsl:template>
 
   <!-- Print the Properties table -->
   <xsl:template name="properties">
-    <table class="results"><tbody>
-      <xsl:for-each select="$subject/*">
-        <tr>
-          <td>
-            <xsl:call-template name="rdf-property">
-              <xsl:with-param name="element" select="." />
-            </xsl:call-template>
-          </td>
-          <td>
-            <xsl:call-template name="rdf-value">
-              <xsl:with-param name="element" select="." />
-            </xsl:call-template>
-          </td>
-        </tr>
-      </xsl:for-each>
-    </tbody></table>
+    <xsl:variable name="elements" select="$subject/*" />
+    <xsl:if test="count($elements) &gt; 0">
+      <section>
+        <h2>Properties</h2>
+        <table class="results"><tbody>
+          <xsl:for-each select="$elements">
+            <tr>
+              <td>
+                <xsl:call-template name="rdf-property">
+                  <xsl:with-param name="element" select="." />
+                </xsl:call-template>
+              </td>
+              <td>
+                <xsl:call-template name="rdf-value">
+                  <xsl:with-param name="element" select="." />
+                </xsl:call-template>
+              </td>
+            </tr>
+          </xsl:for-each>
+        </tbody></table>
+      </section>
+    </xsl:if>
   </xsl:template>
 
   <!-- Print the Inverse Properties table -->
   <xsl:template name="inverse-properties">
-    <table class="results"><tbody>
-      <xsl:for-each select="//rdf:Description[.!=$subject]/*[@rdf:resource=$subject-uri]">
-        <tr>
-          <td>
-            <xsl:call-template name="rdf-property">
-              <xsl:with-param name="element" select="." />
-            </xsl:call-template>
-          </td>
-          <td>
-            <xsl:call-template name="rdf-value">
-              <xsl:with-param name="element" select=".." />
-            </xsl:call-template>
-          </td>
-        </tr>
-      </xsl:for-each>
-    </tbody></table>
+    <xsl:variable name="elements" select="//rdf:Description[.!=$subject]/*[@rdf:resource=$subject-uri]" />
+    <xsl:if test="count($elements) &gt; 0">
+      <section>
+        <h2>Referenced by</h2>
+        <table class="results"><tbody>
+          <xsl:for-each select="$elements">
+            <tr>
+              <td>
+                <xsl:call-template name="rdf-property">
+                  <xsl:with-param name="element" select="." />
+                </xsl:call-template>
+              </td>
+              <td>
+                <xsl:call-template name="rdf-value">
+                  <xsl:with-param name="element" select=".." />
+                </xsl:call-template>
+              </td>
+            </tr>
+          </xsl:for-each>
+        </tbody></table>
+      </section>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
