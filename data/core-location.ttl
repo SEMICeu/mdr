@@ -1,0 +1,290 @@
+@prefix mdr: <http://mdr.semic.eu/def#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix adms: <http://www.w3.org/ns/adms#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix locn: <http://www.w3.org/ns/locn#> .
+
+@prefix cac: <urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2:> .
+@prefix cbc: <urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2:> .
+
+@base <http://mdr.testproject.eu/id/core-location/> .
+
+<> a mdr:Context ;
+    rdfs:label "Core Location"@en ;
+    rdfs:comment "The Location Core Vocabulary provides a minimum set of classes and properties for describing any place in terms of its name, addrress or geometry. The vocabulary is specifically designed to aid the publication of data that is interoperable with EU INSPIRE Directive. It is closely integrated with the Business and Person Core Vocabularies."@en ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+
+###############################################################################
+# Object classes
+###############################################################################
+
+dcterms:Location a mdr:ObjectClass ;
+    mdr:context <> ;
+    rdfs:label "Location"@en ;
+    skos:definition "dcterms:Location class fully represents the Location Core Vocabulary class of Location. This is the key class for the Location Core Vocabulary and represents any location, irrespective of size or other restriction."@en ;
+    skos:relatedMatch cac:LocationType ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:Address a mdr:ObjectClass ;
+    mdr:context <> ;
+    rdfs:label "Address"@en ;
+    skos:definition "An address representation as defined in the data specifications of the EU INSPIRE Directive. The locn:addressId property may be used to link this Address to other representations."@en ;
+    skos:closeMatch cac:AddressType ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:Geometry a mdr:ObjectClass ;
+    mdr:context <> ;
+    rdfs:label "Geometry"@en ;
+    skos:definition "The Geometry Class provides the means to identify a Location as a point, line, polygon, etc. expressed using coordinates in some coordinate reference system. This class defines the notion of \"geometry\" at the conceptual level, and it shall be encoded by using different formats."@en ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+
+###############################################################################
+# Properties
+###############################################################################
+
+locn:location a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "location"@en ;
+    mdr:representation dcterms:Location ;
+    skos:definition "The location property links any resource to the Location Class. Asserting the location relationship implies only that the domain has some connection to a Location in time or space. It does not imply that the resource is necessarily at that location at the time when the assertion is made."@en ;
+    skos:closeMatch cac:Location ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:geographicName a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "geographic name"@en ;
+    mdr:representation rdfs:Literal ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:geometry a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "geometry"@en ;
+    mdr:representation locn:Geometry ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:address a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "address"@en ;
+    mdr:representation locn:Address ;
+    skos:definition "The locn:address property relationship associates any resource with the Address Class"@en ;
+    skos:closeMatch cac:Address ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:fullAddress a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "full address"@en ;
+    mdr:representation rdfs:Literal ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:poBox a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "po box"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:closeMatch cbc:Postbox ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:thoroughfare a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "thoroughfare"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:closeMatch cbc:StreetName ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:locatorDesignator a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "locator designator"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:closeMatch cbc:BuildingNumber ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:locatorName a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "locator name"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:closeMatch cbc:BuildingName ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:addressArea a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "address area"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:closeMatch cbc:CitySubdivisionName ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:postName a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "post name"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:closeMatch cbc:CityName ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:adminUnitL2 a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "admin unit level 2"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:closeMatch cbc:District ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:adminUnitL1 a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "admin unit level 1"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:closeMatch cac:Country ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:postCode a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "post code"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:closeMatch cbc:PostalZone ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+locn:addressId a mdr:Property ;
+    mdr:context <> ;
+    rdfs:label "address ID"@en ;
+    mdr:representation rdfs:Literal ;
+    skos:relatedMatch cbc:ID ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+
+###############################################################################
+# Data Elements
+###############################################################################
+
+<element/LocationGeographicName> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass dcterms:Location ;
+    mdr:property locn:geographicName ;
+    skos:definition "A geographic name is a proper noun applied to a spatial object. For INSPIRE-conformant data, provide the metadata for the geographic name using a skos:Concept as a datatype."@en ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/LocationGeometry> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass dcterms:Location ;
+    mdr:property locn:geometry ;
+    skos:definition "Associates any Location with the locn:Geometry class. Depending on how a geometry is encoded, the range of this property may be either a literal or a geometry class."@en ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressFullAddress> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:fullAddress ;
+    skos:definition "The complete address written as a string, with or without formatting."@en ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressPoBox> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:poBox ;
+    skos:definition "The Post Office Box number."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressPostbox> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressThoroughfare> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:thoroughfare ;
+    skos:definition "An address component that represents the name of a passage or way through from one location to another. A thoroughfare is not necessarily a road, it might be a waterway or some other feature."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressStreetName> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressLocatorDesignator> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:locatorDesignator ;
+    skos:definition "A number or a sequence of characters that uniquely identifies the locator within the relevant scope(s). The full identification of the locator could include one or more locator designators."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressBuildingNumber> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressLocatorName> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:locatorName ;
+    skos:definition "Proper noun(s) applied to the real world entity identified by the locator. The locator name could be the name of the property or complex, of the building or part of the building, or it could be the name of a room inside a building."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressBuildingName> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressAddressArea> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:addressArea ;
+    skos:definition "The name or names of a geographic area or locality that groups a number of addressable objects for addressing purposes, without being an administrative unit. This would typically be part of a city, a neighbourhood or village."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressCitySubdivisionName> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressPostName> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:postName ;
+    skos:definition "The key postal division of the address, usually the city."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressCityName> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressAdminUnitL2> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:adminUnitL ;
+    skos:definition "The region of the address, usually a county, state or other such area that typically encompasses several localities."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressDistrict> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressAdminUnitL1> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:adminUnitL ;
+    skos:definition "The uppermost administrative unit for the address, almost always a country. Best practice is to use the ISO 3166-1 code but if this is inappropriate for the context, country names should be provided in a consistent manner to reduce ambiguity."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressCountry> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressPostCode> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:postCode ;
+    skos:definition "The post code (a.k.a postal code, zip code etc.). Post codes are common elements in many countries' postal address systems."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressPostalZone> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .
+
+<element/AddressAddressId> a mdr:DataElement ;
+    mdr:context <> ;
+    mdr:objectClass locn:Address ;
+    mdr:property locn:addressId ;
+    skos:definition "The concept of adding a globally unique identifier for each instance of an address is a crucial part of the INSPIRE data spec."@en ;
+    skos:closeMatch <http://mdr.semic.eu/id/ubl/element/AddressID> ;
+    dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
+    dcterms:rightsHolder <http://ec.europa.eu/> .

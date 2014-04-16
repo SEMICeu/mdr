@@ -8,7 +8,7 @@
 # Basic RDF datatypes
 # Label and definitions are provided by the RDFS vocabulary.
 
-rdfs:Resource a mdr:DataType ;
+rdfs:Resource a mdr:ObjectClass ;
     adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> .
 
 rdfs:Literal a mdr:DataType ;
