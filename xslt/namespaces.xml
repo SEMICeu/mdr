@@ -43,4 +43,20 @@
     <prefix>mdr</prefix>
     <uri>http://mdr.semic.eu/def#</uri>
   </namespace>
+  <namespace>
+    <prefix>cac</prefix>
+    <uri>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2:</uri>
+  </namespace>
+  <namespace>
+    <prefix>cbc</prefix>
+    <uri>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2:</uri>
+  </namespace>
+  <namespace>
+    <prefix>org</prefix>
+    <uri>http://www.w3.org/ns/org#</uri>
+  </namespace>
+  <namespace>
+    <prefix>rov</prefix>
+    <uri>http://www.w3.org/ns/regorg#</uri>
+  </namespace>
 </namespaces>
