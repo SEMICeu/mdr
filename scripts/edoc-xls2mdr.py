@@ -133,7 +133,7 @@ class EDocumentSpreadsheet:
         '''Add the contents of the 'Information Requirements' sheet to the
         graph g.'''
         for item in self.read_sheet("Information Requirements", "Information Requirement"):
-            uri = self.uri("dec", item["identifier"])
+            uri = self.uri("ir", item["identifier"])
             g.add((uri, RDF.type, MDR.InformationRequirement))
             g.add((uri, MDR.context, URIRef(self.ns)))
             g.add((uri, RDFS.label, self.text(item["business term name"])))
