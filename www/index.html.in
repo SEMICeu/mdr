@@ -177,6 +177,7 @@
     standards for the industry and business process the project is targeting.
     The <a href="http://www.cranesoftwrights.com/resources/ubl/index.htm#gc2ublndr">Crane Software GC-to-UBL NDR script</a>
     is used to generate XML Schemas. </p>
+    <p>Learn more by reading the <a href="http://joinup.ec.europa.eu/node/78939">tutorial on the use of Crane's Genericode-to-UBL-NDR to extend the Core Vocabularies and create e-Document formats</a>.</p>
   </section>
 </section>
 
