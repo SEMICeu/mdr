@@ -35,7 +35,7 @@ if(_uri = '') {
   } else if(_type <> '') {
     _uri := sprintf('%BASEURI%id/%U/%U', _namespace, _type);
   } else {
-    _uri := sprintf('%BASEURI%id/%U', _namespace);
+    _uri := sprintf('%BASEURI%id/%U/', _namespace);
   }
 }
 
