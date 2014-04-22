@@ -68,6 +68,15 @@
     
 
 
+    <!-- http://mdr.semic.eu/def#concretizedBy -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.semic.eu/def#concretizedBy">
+        <rdfs:label>concretized by</rdfs:label>
+        <rdfs:comment>The concretization (an object class or data element) of a requirement (resp. a transaction or an information requirement).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://mdr.semic.eu/def#context -->
 
     <owl:ObjectProperty rdf:about="http://mdr.semic.eu/def#context">
