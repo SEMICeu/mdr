@@ -52,6 +52,10 @@
     <uri>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2:</uri>
   </namespace>
   <namespace>
+    <prefix>udt</prefix>
+    <uri>urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2:</uri>
+  </namespace>
+  <namespace>
     <prefix>org</prefix>
     <uri>http://www.w3.org/ns/org#</uri>
   </namespace>
