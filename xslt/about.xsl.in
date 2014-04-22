@@ -92,7 +92,7 @@
 
   <!-- Print the Inverse Properties table -->
   <xsl:template name="inverse-properties">
-    <xsl:variable name="elements" select="//rdf:Description[.!=$subject]/*[@rdf:resource=$subject-uri]" />
+    <xsl:variable name="elements" select="//rdf:Description/*[@rdf:resource=$subject-uri]" />
     <xsl:if test="count($elements) &gt; 0">
       <section>
         <h2>Referenced by</h2>
