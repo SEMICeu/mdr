@@ -10,7 +10,7 @@
 @prefix cac: <urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2:> .
 @prefix cbc: <urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2:> .
 
-@base <http://mdr.testproject.eu/id/core-location/> .
+@base <http://mdr.semic.eu/id/core-location/> .
 
 <> a mdr:Context ;
     rdfs:label "Core Location"@en ;
