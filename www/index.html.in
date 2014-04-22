@@ -110,30 +110,8 @@
   </section>
 </section>
 
-<section id="registry">
-  <h2>Part I. Create and browse the metadata registry</h2>
-
-  <p>We have first documented existing libraries of data elements, included in
-  UBL and the W3C Registered Organization vocabulary, using our
-  <a href="/def">ontology</a> inspired by the
-  <a href="http://en.wikipedia.org/wiki/ISO/IEC_11179">ISO 11179-3</a>
-  meta-model.
-  We also plan to create mappings between data elements.</p>
-
-  <p>Use the box below to search the registry for object classes and data
-  element concepts.</p>
-
-  <div>
-    <form id="searchform">
-      <input id="query" type="text" />
-      <input type="submit" value="Search" />
-    </form>
-  </div>
-  <div id="results"></div>
-</section>
-
 <section id="methodology">
-  <h2>Part II. Apply the e-Document engineering methodology</h2>
+  <h2>Part I. Apply the e-Document engineering methodology</h2>
 
   <p>We use a standard e-Document engineering method that is largely based on the CEN/BII method for e-Document engineering. It can be presented as follows:</p>
 
@@ -200,6 +178,40 @@
     The <a href="http://www.cranesoftwrights.com/resources/ubl/index.htm#gc2ublndr">Crane Software GC-to-UBL NDR script</a>
     is used to generate XML Schemas. </p>
   </section>
+</section>
+
+<section id="registry">
+  <h2>Part II. Create and browse the metadata registry</h2>
+
+  <p>Using our <a href="/def">ontology</a> inspired by the
+  <a href="http://en.wikipedia.org/wiki/ISO/IEC_11179">ISO 11179-3</a>
+  meta-model, we have documented the following libraries of data elements:
+  <ul>
+    <li><a href="/id/ubl/">OASIS UBL 2.1 Common Library</a>,</li>
+    <li><a href="/id/core-location/">ISA Location Core Vocabulary</a>,</li>
+    <li><a href="/id/regorg/">W3C Registered Organization vocabulary</a>.</li>
+  </ul>
+  We have also added some mappings between the first two libraries.
+  </p>
+
+  <p>Start browsing the registry with the following examples:
+  <ul>
+    <li>the <a href="/about/html/http%3A%2F%2Fwww.w3.org%2Fns%2Fregorg%23RegisteredOrganization">Registered Organization</a> object class;</li>
+    <li>the <a href="/about/html/http%3A%2F%2Fwww.w3.org%2Fns%2Flocn%23Address">ISA Address</a> object class mapped to the <a href="/about/html/urn%3Aoasis%3Anames%3Aspecification%3Aubl%3Aschema%3Axsd%3ACommonAggregateComponents-2%3AAddressType">UBL Address</a> object class;</li>
+    <li>the <a href="/id/esens-activity-registration/transaction/T1">Business Activity Request</a> transaction.</li>
+  </ul>
+  </p>
+
+  <p>Or use the box below to search the registry for object classes and data
+  elements.</p>
+
+  <div>
+    <form id="searchform">
+      <input id="query" type="text" />
+      <input type="submit" value="Search" />
+    </form>
+  </div>
+  <div id="results"></div>
 </section>
 
 <footer>

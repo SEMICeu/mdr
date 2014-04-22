@@ -60,7 +60,6 @@ $(function() {
     doSearch();
     event.preventDefault();
   });
-  doSearch();
   fillExample('goals', 'SELECT DISTINCT ?id ?name ?description WHERE { ?id a mdr:Goal ; rdfs:label ?name ; rdfs:comment ?description } ORDER BY ?id');
   fillExample('transactions', 'SELECT DISTINCT ?id ?name ?description ?goal WHERE { ?id a mdr:Transaction ; rdfs:label ?name ; rdfs:comment ?description ; mdr:implements ?goal } ORDER BY ?id ?goal');
   fillExample('requirements', 'SELECT DISTINCT ?id ?name ?statement ?rationale ?transaction ?goal WHERE { ?id a mdr:HighLevelRequirement ; rdfs:label ?name ; skos:definition ?statement ; mdr:rationale ?rationale ; mdr:transaction ?transaction ; mdr:implements ?goal } ORDER BY ?id ?goal');
