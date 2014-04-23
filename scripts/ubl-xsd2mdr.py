@@ -65,9 +65,15 @@ class UBLLibrary:
 
     # Utility methods
 
-    def openxsd(self, name):
+    def listdir(self, *components):
+        '''Returns a list of files in a directory.'''
+        components = (self.directory,) + components
+        return os.listdir(os.path.join(*components))
+
+    def openxsd(self, *components):
         '''Open an XSD and return the root element.'''
-        tree = xml.etree.ElementTree.parse(os.path.join(self.directory, name))
+        components = (self.directory,) + components
+        tree = xml.etree.ElementTree.parse(os.path.join(*components))
         return tree.getroot()
 
     def cctsdoc(self, e, name):
@@ -126,11 +132,12 @@ class UBLLibrary:
         self.convert_datatypes(g)
         self.convert_basic(g)
         self.convert_aggregate(g)
+        self.convert_maindocs(g)
         return g
 
     def convert_datatypes(self, g):
         '''Convert data types.'''
-        root = self.openxsd("UBL-UnqualifiedDataTypes-2.1.xsd")
+        root = self.openxsd("common", "UBL-UnqualifiedDataTypes-2.1.xsd")
         for e in root.findall(XSD.xml('complexType')):
             uri = UDT.term(e.attrib['name'])
             g.add((uri, RDF.type, MDR.DataType))
@@ -145,7 +152,7 @@ class UBLLibrary:
 
     def convert_basic(self, g):
         '''Convert basic components.'''
-        root = self.openxsd("UBL-CommonBasicComponents-2.1.xsd")
+        root = self.openxsd("common", "UBL-CommonBasicComponents-2.1.xsd")
         for e in root.findall(XSD.xml('element')):
             t = root.find(XSD.xml("complexType") +
                           "[@name='" + e.attrib['type'] + "']")
@@ -158,11 +165,20 @@ class UBLLibrary:
             g.add((uri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
             g.add((uri, ADMS.representationTechnique, XMLSchema))
             g.add((uri, MDR.representation, self.attriburi(datatype)))
-            # Property terms are defined in convert_aggregate
+            # Property terms are defined in convert_{aggregate,maindocs}
 
     def convert_aggregate(self, g):
         '''Convert aggregate components.'''
-        root = self.openxsd("UBL-CommonAggregateComponents-2.1.xsd")
+        root = self.openxsd("common", "UBL-CommonAggregateComponents-2.1.xsd")
+        for e in root.findall(XSD.xml('element')):
+            uri = CAC.term(e.attrib['name'])
+            g.add((uri, RDF.type, MDR.Property))
+            g.add((uri, MDR.context, URIRef(self.ns)))
+            g.add((uri, DCTERMS.rights, RIGHTS))
+            g.add((uri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
+            g.add((uri, ADMS.representationTechnique, XMLSchema))
+            g.add((uri, MDR.representation, CAC.term(e.attrib['type'])))
+            # Property terms are defined below and in convert_maindocs
         for cls in root.findall(XSD.xml('complexType')):
             clsuri = CAC.term(cls.attrib['name'])
             clsubl = re.sub(r"Type$", r"", cls.attrib['name'])
@@ -203,38 +219,44 @@ class UBLLibrary:
                 if cardmax != "unbounded":
                     g.add((uri, MDR.maxCardinality, self.nonneg(int(cardmax))))
                 # Property
-                g.add((propuri, RDF.type, MDR.Property))
-                g.add((propuri, MDR.context, URIRef(self.ns)))
-                g.add((propuri, DCTERMS.rights, RIGHTS))
-                g.add((propuri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
-                g.add((propuri, ADMS.representationTechnique, XMLSchema))
                 g.add((propuri, MDR.propertyTerm,
                        Literal(self.cctsdoc(e, "PropertyTerm"))))
                 propqualifier = self.cctsdoc(e, "PropertyTermQualifier")
                 if propqualifier:
                     g.add((propuri, MDR.propertyTermQualifier,
                            Literal(propqualifier)))
-                proptype = self.cctsdoc(e, "ComponentType")
-                if proptype == "BBIE":
-                    # The representation term is set by convert_basic
-                    dtqualifier = self.cctsdoc(e, "DataTypeQualifier")
-                    if dtqualifier:
-                        g.add((propuri, MDR.representationQualifier,
-                               Literal(dtqualifier)))
-                elif proptype == "ASBIE":
-                    assoc = root.find(XSD.xml('element') +
-                                      "[@name='" + propubl + "']")
-                    assocuri = CAC.term(assoc.attrib['type'])
-                    g.add((propuri, MDR.representation, assocuri))
-                else:
-                    assert False
+                dtqualifier = self.cctsdoc(e, "DataTypeQualifier")
+                if dtqualifier:
+                    g.add((propuri, MDR.representationQualifier,
+                           Literal(dtqualifier)))
+
+    def convert_maindocs(self, g):
+        '''Convert documents (extract property information).'''
+        for filename in self.listdir("maindoc"):
+            root = self.openxsd("maindoc", filename)
+            for e in root.findall(XSD.xml('complexType') + "/" +
+                                  XSD.xml('sequence') + "/" +
+                                  XSD.xml('element')):
+                propuri = self.attriburi(e.attrib['ref'])
+                if propuri.startswith("ext:"):
+                    continue
+                g.add((propuri, MDR.propertyTerm,
+                       Literal(self.cctsdoc(e, "PropertyTerm"))))
+                propqualifier = self.cctsdoc(e, "PropertyTermQualifier")
+                if propqualifier:
+                    g.add((propuri, MDR.propertyTermQualifier,
+                           Literal(propqualifier)))
+                dtqualifier = self.cctsdoc(e, "DataTypeQualifier")
+                if dtqualifier:
+                    g.add((propuri, MDR.representationQualifier,
+                           Literal(dtqualifier)))
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.description = "Convert UBL XSD to MDR RDF."
     ap.add_argument("-d", "--directory", default=".",
-                    help="directory containing the common XSDs "+
+                    help="directory containing the XSDs "+
                          "(default: %(default)s)")
     ap.add_argument("-N", "--namespace",
                     default="http://mdr.semic.eu/id/ubl/",
