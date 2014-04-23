@@ -156,6 +156,7 @@ class UBLLibrary:
             g.add((uri, MDR.context, URIRef(self.ns)))
             g.add((uri, DCTERMS.rights, RIGHTS))
             g.add((uri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
+            g.add((uri, ADMS.representationTechnique, XMLSchema))
             g.add((uri, MDR.representation, self.attriburi(datatype)))
             # Property terms are defined in convert_aggregate
 
@@ -171,6 +172,7 @@ class UBLLibrary:
             g.add((clsuri, MDR.context, URIRef(self.ns)))
             g.add((clsuri, DCTERMS.rights, RIGHTS))
             g.add((clsuri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
+            g.add((clsuri, ADMS.representationTechnique, XMLSchema))
             g.add((clsuri, RDFS.label, self.text(clsname)))
             g.add((clsuri, MDR.objectClassName, Literal(clsname)))
             g.add((clsuri, SKOS.definition,
@@ -185,6 +187,7 @@ class UBLLibrary:
                 g.add((uri, MDR.context, URIRef(self.ns)))
                 g.add((uri, DCTERMS.rights, RIGHTS))
                 g.add((uri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
+                g.add((uri, ADMS.representationTechnique, XMLSchema))
                 g.add((uri, MDR.objectClass, clsuri))
                 g.add((uri, MDR.property, propuri))
                 g.add((uri, SKOS.definition,
@@ -204,6 +207,7 @@ class UBLLibrary:
                 g.add((propuri, MDR.context, URIRef(self.ns)))
                 g.add((propuri, DCTERMS.rights, RIGHTS))
                 g.add((propuri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
+                g.add((propuri, ADMS.representationTechnique, XMLSchema))
                 g.add((propuri, MDR.propertyTerm,
                        Literal(self.cctsdoc(e, "PropertyTerm"))))
                 propqualifier = self.cctsdoc(e, "PropertyTermQualifier")
