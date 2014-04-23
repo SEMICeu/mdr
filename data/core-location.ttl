@@ -25,6 +25,7 @@
 
 dcterms:Location a mdr:ObjectClass ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "Location"@en ;
     skos:definition "dcterms:Location class fully represents the Location Core Vocabulary class of Location. This is the key class for the Location Core Vocabulary and represents any location, irrespective of size or other restriction."@en ;
     skos:relatedMatch cac:LocationType ;
@@ -33,6 +34,7 @@ dcterms:Location a mdr:ObjectClass ;
 
 locn:Address a mdr:ObjectClass ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "Address"@en ;
     skos:definition "An address representation as defined in the data specifications of the EU INSPIRE Directive. The locn:addressId property may be used to link this Address to other representations."@en ;
     skos:closeMatch cac:AddressType ;
@@ -41,6 +43,7 @@ locn:Address a mdr:ObjectClass ;
 
 locn:Geometry a mdr:ObjectClass ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "Geometry"@en ;
     skos:definition "The Geometry Class provides the means to identify a Location as a point, line, polygon, etc. expressed using coordinates in some coordinate reference system. This class defines the notion of \"geometry\" at the conceptual level, and it shall be encoded by using different formats."@en ;
     dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
@@ -53,6 +56,7 @@ locn:Geometry a mdr:ObjectClass ;
 
 locn:location a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "location"@en ;
     mdr:representation dcterms:Location ;
     skos:definition "The location property links any resource to the Location Class. Asserting the location relationship implies only that the domain has some connection to a Location in time or space. It does not imply that the resource is necessarily at that location at the time when the assertion is made."@en ;
@@ -62,6 +66,7 @@ locn:location a mdr:Property ;
 
 locn:geographicName a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "geographic name"@en ;
     mdr:representation rdfs:Literal ;
     dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
@@ -69,6 +74,7 @@ locn:geographicName a mdr:Property ;
 
 locn:geometry a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "geometry"@en ;
     mdr:representation locn:Geometry ;
     dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
@@ -76,6 +82,7 @@ locn:geometry a mdr:Property ;
 
 locn:address a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "address"@en ;
     mdr:representation locn:Address ;
     skos:definition "The locn:address property relationship associates any resource with the Address Class"@en ;
@@ -85,6 +92,7 @@ locn:address a mdr:Property ;
 
 locn:fullAddress a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "full address"@en ;
     mdr:representation rdfs:Literal ;
     dcterms:rights <https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11> ;
@@ -92,6 +100,7 @@ locn:fullAddress a mdr:Property ;
 
 locn:poBox a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "po box"@en ;
     mdr:representation rdfs:Literal ;
     skos:closeMatch cbc:Postbox ;
@@ -100,6 +109,7 @@ locn:poBox a mdr:Property ;
 
 locn:thoroughfare a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "thoroughfare"@en ;
     mdr:representation rdfs:Literal ;
     skos:closeMatch cbc:StreetName ;
@@ -108,6 +118,7 @@ locn:thoroughfare a mdr:Property ;
 
 locn:locatorDesignator a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "locator designator"@en ;
     mdr:representation rdfs:Literal ;
     skos:closeMatch cbc:BuildingNumber ;
@@ -116,6 +127,7 @@ locn:locatorDesignator a mdr:Property ;
 
 locn:locatorName a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "locator name"@en ;
     mdr:representation rdfs:Literal ;
     skos:closeMatch cbc:BuildingName ;
@@ -124,6 +136,7 @@ locn:locatorName a mdr:Property ;
 
 locn:addressArea a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "address area"@en ;
     mdr:representation rdfs:Literal ;
     skos:closeMatch cbc:CitySubdivisionName ;
@@ -132,6 +145,7 @@ locn:addressArea a mdr:Property ;
 
 locn:postName a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "post name"@en ;
     mdr:representation rdfs:Literal ;
     skos:closeMatch cbc:CityName ;
@@ -140,6 +154,7 @@ locn:postName a mdr:Property ;
 
 locn:adminUnitL2 a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "admin unit level 2"@en ;
     mdr:representation rdfs:Literal ;
     skos:closeMatch cbc:District ;
@@ -148,6 +163,7 @@ locn:adminUnitL2 a mdr:Property ;
 
 locn:adminUnitL1 a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "admin unit level 1"@en ;
     mdr:representation rdfs:Literal ;
     skos:closeMatch cac:Country ;
@@ -156,6 +172,7 @@ locn:adminUnitL1 a mdr:Property ;
 
 locn:postCode a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "post code"@en ;
     mdr:representation rdfs:Literal ;
     skos:closeMatch cbc:PostalZone ;
@@ -164,6 +181,7 @@ locn:postCode a mdr:Property ;
 
 locn:addressId a mdr:Property ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     rdfs:label "address ID"@en ;
     mdr:representation rdfs:Literal ;
     skos:relatedMatch cbc:ID ;
@@ -177,6 +195,7 @@ locn:addressId a mdr:Property ;
 
 <element/LocationGeographicName> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass dcterms:Location ;
     mdr:property locn:geographicName ;
     skos:definition "A geographic name is a proper noun applied to a spatial object. For INSPIRE-conformant data, provide the metadata for the geographic name using a skos:Concept as a datatype."@en ;
@@ -185,6 +204,7 @@ locn:addressId a mdr:Property ;
 
 <element/LocationGeometry> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass dcterms:Location ;
     mdr:property locn:geometry ;
     skos:definition "Associates any Location with the locn:Geometry class. Depending on how a geometry is encoded, the range of this property may be either a literal or a geometry class."@en ;
@@ -193,6 +213,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressFullAddress> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:fullAddress ;
     skos:definition "The complete address written as a string, with or without formatting."@en ;
@@ -201,6 +222,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressPoBox> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:poBox ;
     skos:definition "The Post Office Box number."@en ;
@@ -210,6 +232,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressThoroughfare> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:thoroughfare ;
     skos:definition "An address component that represents the name of a passage or way through from one location to another. A thoroughfare is not necessarily a road, it might be a waterway or some other feature."@en ;
@@ -219,6 +242,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressLocatorDesignator> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:locatorDesignator ;
     skos:definition "A number or a sequence of characters that uniquely identifies the locator within the relevant scope(s). The full identification of the locator could include one or more locator designators."@en ;
@@ -228,6 +252,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressLocatorName> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:locatorName ;
     skos:definition "Proper noun(s) applied to the real world entity identified by the locator. The locator name could be the name of the property or complex, of the building or part of the building, or it could be the name of a room inside a building."@en ;
@@ -237,6 +262,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressAddressArea> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:addressArea ;
     skos:definition "The name or names of a geographic area or locality that groups a number of addressable objects for addressing purposes, without being an administrative unit. This would typically be part of a city, a neighbourhood or village."@en ;
@@ -246,6 +272,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressPostName> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:postName ;
     skos:definition "The key postal division of the address, usually the city."@en ;
@@ -255,6 +282,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressAdminUnitL2> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:adminUnitL ;
     skos:definition "The region of the address, usually a county, state or other such area that typically encompasses several localities."@en ;
@@ -264,6 +292,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressAdminUnitL1> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:adminUnitL ;
     skos:definition "The uppermost administrative unit for the address, almost always a country. Best practice is to use the ISO 3166-1 code but if this is inappropriate for the context, country names should be provided in a consistent manner to reduce ambiguity."@en ;
@@ -273,6 +302,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressPostCode> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:postCode ;
     skos:definition "The post code (a.k.a postal code, zip code etc.). Post codes are common elements in many countries' postal address systems."@en ;
@@ -282,6 +312,7 @@ locn:addressId a mdr:Property ;
 
 <element/AddressAddressId> a mdr:DataElement ;
     mdr:context <> ;
+    adms:representationTechnique <http://purl.org/adms/representationtechnique/RDFSchema> ;
     mdr:objectClass locn:Address ;
     mdr:property locn:addressId ;
     skos:definition "The concept of adding a globally unique identifier for each instance of an address is a crucial part of the INSPIRE data spec."@en ;
