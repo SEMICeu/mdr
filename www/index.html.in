@@ -197,8 +197,8 @@
 
   <p>Start browsing the registry with the following examples:
   <ul>
-    <li>the <a href="/about/html/http%3A%2F%2Fwww.w3.org%2Fns%2Fregorg%23RegisteredOrganization">Registered Organization</a> object class;</li>
-    <li>the <a href="/about/html/http%3A%2F%2Fwww.w3.org%2Fns%2Flocn%23Address">ISA Address</a> object class mapped to the <a href="/about/html/urn%3Aoasis%3Anames%3Aspecification%3Aubl%3Aschema%3Axsd%3ACommonAggregateComponents-2%3AAddressType">UBL Address</a> object class;</li>
+    <li>the <a href="/id/regorg/class/RegisteredOrganization">Registered Organization</a> object class;</li>
+    <li>the <a href="/id/core-location/class/Address">ISA Address</a> object class mapped to the <a href="/id/ubl/class/Address">UBL Address</a> object class;</li>
     <li>the <a href="/id/esens-activity-registration/transaction/T1">Business Activity Request</a> transaction and its <a href="/id/esens-activity-registration/class/BusinessActivityRegistrationRequestType">concretization</a>.</li>
   </ul>
   </p>

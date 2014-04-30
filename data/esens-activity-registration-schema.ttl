@@ -3,9 +3,9 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix mdr: <http://mdr.semic.eu/def#> .
-@prefix cac: <urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2:> .
-@prefix cbc: <urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2:> .
-@prefix udt: <urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2:> .
+@prefix ublclass: <http://mdr.semic.eu/id/ubl/class/> .
+@prefix ublprop: <http://mdr.semic.eu/id/ubl/property/> .
+@prefix ubldt: <http://mdr.semic.eu/id/ubl/datatype/> .
 
 @base <http://mdr.semic.eu/id/esens-activity-registration/> .
 
@@ -30,7 +30,7 @@
 <element/BusinessActivityRegistrationRequestUBLVersionID> a mdr:DataElement ;
     mdr:context <> ;
     mdr:objectClass <class/BusinessActivityRegistrationRequestType> ;
-    mdr:property cbc:UBLVersionID ;
+    mdr:property ublprop:UBLVersionID ;
     mdr:order 1 ;
     mdr:minCardinality "0"^^xsd:nonNegativeInteger ;
     mdr:maxCardinality "1"^^xsd:nonNegativeInteger ;
@@ -40,7 +40,7 @@
 <element/BusinessActivityRegistrationRequestCustomizationID> a mdr:DataElement ;
     mdr:context <> ;
     mdr:objectClass <class/BusinessActivityRegistrationRequestType> ;
-    mdr:property cbc:CustomizationID ;
+    mdr:property ublprop:CustomizationID ;
     mdr:order 2 ;
     mdr:minCardinality "0"^^xsd:nonNegativeInteger ;
     mdr:maxCardinality "1"^^xsd:nonNegativeInteger ;
@@ -50,7 +50,7 @@
 <element/BusinessActivityRegistrationRequestProfileID> a mdr:DataElement ;
     mdr:context <> ;
     mdr:objectClass <class/BusinessActivityRegistrationRequestType> ;
-    mdr:property cbc:ProfileID ;
+    mdr:property ublprop:ProfileID ;
     mdr:order 3 ;
     mdr:minCardinality "0"^^xsd:nonNegativeInteger ;
     mdr:maxCardinality "1"^^xsd:nonNegativeInteger ;
@@ -60,7 +60,7 @@
 <element/BusinessActivityRegistrationRequestProfileExecutionID> a mdr:DataElement ;
     mdr:context <> ;
     mdr:objectClass <class/BusinessActivityRegistrationRequestType> ;
-    mdr:property cbc:ProfileExecutionID ;
+    mdr:property ublprop:ProfileExecutionID ;
     mdr:order 4 ;
     mdr:minCardinality "0"^^xsd:nonNegativeInteger ;
     mdr:maxCardinality "1"^^xsd:nonNegativeInteger ;
@@ -141,17 +141,17 @@
 <property/RequestDate> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Request Date" ;
-    mdr:representation udt:DateType .
+    mdr:representation ubldt:Date .
 
 <property/RequestID> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Request Identifier" ;
-    mdr:representation udt:IdentifierType .
+    mdr:representation ubldt:Identifier .
 
 <property/PointSingleContactID> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Point Single Contact Identifier" ;
-    mdr:representation udt:IdentifierType .
+    mdr:representation ubldt:Identifier .
 
 <property/CompanyActivity> a mdr:Property ;
     mdr:context <> ;
@@ -162,7 +162,7 @@
     mdr:context <> ;
     mdr:propertyTerm "Party" ;
     mdr:propertyTermQualifier "Requesting" ;
-    mdr:representation cac:PartyType .
+    mdr:representation ublclass:Party .
 
 <property/Cvbusiness> a mdr:Property ;
     mdr:context <> ;
@@ -201,13 +201,13 @@
     mdr:context <> ;
     mdr:propertyTerm "Code" ;
     mdr:propertyTermQualifier "Activity" ;
-    mdr:representation udt:CodeType .
+    mdr:representation ubldt:Code .
 
 <property/ActivityDescription> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Description" ;
     mdr:propertyTermQualifier "Activity" ;
-    mdr:representation udt:TextType .
+    mdr:representation ubldt:Text .
 
 # Cvbusiness
 
@@ -274,30 +274,30 @@
 <property/LegalID> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Legal Identifier" ;
-    mdr:representation udt:IdentifierType .
+    mdr:representation ubldt:Identifier .
 
 <property/LegalName> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Legal Name" ;
-    mdr:representation udt:TextType .
+    mdr:representation ubldt:Text .
 
 <property/AlternativeName> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Alternative Name" ;
-    mdr:representation udt:TextType .
+    mdr:representation ubldt:Text .
 
 <property/CompanyStatusCode> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Company Status" ;
-    mdr:representation udt:CodeType .
+    mdr:representation ubldt:Code .
 
 <property/CompanyTypeCode> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Company Type" ;
-    mdr:representation udt:CodeType .
+    mdr:representation ubldt:Code .
 
 <property/BusinessAddress> a mdr:Property ;
     mdr:context <> ;
     mdr:propertyTerm "Address" ;
     mdr:propertyTermQualifier "Business" ;
-    mdr:representation cac:AddressType .
+    mdr:representation ublclass:Address .

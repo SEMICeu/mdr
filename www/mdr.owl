@@ -87,6 +87,24 @@
     
 
 
+    <!-- http://mdr.semic.eu/def#hasURI -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.semic.eu/def#hasURI">
+        <rdfs:label>has URI</rdfs:label>
+        <rdfs:comment>The RDF URI representing the object class or property.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://mdr.semic.eu/def#hasXMLNamespace -->
+
+    <owl:ObjectProperty rdf:about="http://mdr.semic.eu/def#hasXMLNamespace">
+        <rdfs:label>has XML namespace</rdfs:label>
+        <rdfs:comment>The XML namespace that contains the representation of the object class or property.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://mdr.semic.eu/def#implements -->
 
     <owl:ObjectProperty rdf:about="http://mdr.semic.eu/def#implements">
@@ -155,6 +173,15 @@
         <rdfs:label>example</rdfs:label>
         <rdfs:comment>An example of the Data Element.</rdfs:comment>
         <rdfs:domain rdf:resource="http://mdr.semic.eu/def#DataElement"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://mdr.semic.eu/def#hasXMLLocalPart -->
+
+    <owl:DatatypeProperty rdf:about="http://mdr.semic.eu/def#hasXMLLocalPart">
+        <rdfs:label>has XML local part</rdfs:label>
+        <rdfs:comment>The XML local part inside the XML namespace that represents the object class or property.</rdfs:comment>
     </owl:DatatypeProperty>
     
 

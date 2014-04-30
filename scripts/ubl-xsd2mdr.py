@@ -34,10 +34,10 @@ from rdflib import URIRef, Literal
 from rdflib.namespace import RDF, XSD, RDFS, SKOS, DCTERMS
 MDR = rdflib.Namespace("http://mdr.semic.eu/def#")
 ADMS = rdflib.Namespace("http://www.w3.org/ns/adms#")
-CAC = rdflib.Namespace("urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2:")
-CBC = rdflib.Namespace("urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2:")
-UDT = rdflib.Namespace("urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2:")
-CCTS = rdflib.Namespace("urn:un:unece:uncefact:documentation:2:")
+CAC = rdflib.Namespace("urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2")
+CBC = rdflib.Namespace("urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
+UDT = rdflib.Namespace("urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2")
+CCTS = rdflib.Namespace("urn:un:unece:uncefact:documentation:2")
 
 # Extend rdflib Namespace to generate XML tags
 rdflib.namespace.Namespace.xml = lambda self, term: "{" + str(self).strip("#:") + "}" + term
@@ -85,20 +85,20 @@ class UBLLibrary:
             return None
         return doc.text
 
-    def attriburi(self, value):
-        '''Return the URI of the attribute value.'''
-        if value.startswith('udt:'):
-            return UDT.term(value[4:])
-        elif value.startswith('cac:'):
-            return CAC.term(value[4:])
-        elif value.startswith('cbc:'):
-            return CBC.term(value[4:])
-        else:
-            return URIRef(value)
-
     def uri(self, concept, name):
         '''Return the URI of name.'''
         return self.ns.term(concept + "/" + name)
+
+    def attriburi(self, value):
+        '''Return the URI of the attribute value.'''
+        if value.startswith('udt:') and value.endswith("Type"):
+            return self.uri("datatype", value[4:-4])
+        elif value.startswith('cac:') and value.endswith("Type"):
+            return self.uri("class", value[4:-4])
+        elif value.startswith('cac:') or value.startswith('cbc:'):
+            return self.uri("property", value[4:])
+        else:
+            return URIRef(value)
 
     def text(self, text):
         '''Return an RDF Literal with the text.'''
@@ -139,7 +139,7 @@ class UBLLibrary:
         '''Convert data types.'''
         root = self.openxsd("common", "UBL-UnqualifiedDataTypes-2.1.xsd")
         for e in root.findall(XSD.xml('complexType')):
-            uri = UDT.term(e.attrib['name'])
+            uri = self.attriburi("udt:" + e.attrib['name'])
             g.add((uri, RDF.type, MDR.DataType))
             g.add((uri, MDR.context, URIRef(self.ns)))
             g.add((uri, DCTERMS.rights, RIGHTS))
@@ -149,6 +149,8 @@ class UBLLibrary:
             g.add((uri, MDR.representationTerm,
                    Literal(self.cctsdoc(e, "RepresentationTermName"))))
             g.add((uri, ADMS.representationTechnique, XMLSchema))
+            g.add((uri, MDR.hasXMLNamespace, URIRef(UDT)))
+            g.add((uri, MDR.hasXMLLocalPart, Literal(e.attrib['name'])))
 
     def convert_basic(self, g):
         '''Convert basic components.'''
@@ -158,12 +160,14 @@ class UBLLibrary:
                           "[@name='" + e.attrib['type'] + "']")
             datatype = t.find(XSD.xml("simpleContent") + "/" +
                               XSD.xml("extension")).attrib['base']
-            uri = CBC.term(e.attrib['name'])
+            uri = self.attriburi("cbc:" + e.attrib['name'])
             g.add((uri, RDF.type, MDR.Property))
             g.add((uri, MDR.context, URIRef(self.ns)))
             g.add((uri, DCTERMS.rights, RIGHTS))
             g.add((uri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
             g.add((uri, ADMS.representationTechnique, XMLSchema))
+            g.add((uri, MDR.hasXMLNamespace, URIRef(CBC)))
+            g.add((uri, MDR.hasXMLLocalPart, Literal(e.attrib['name'])))
             g.add((uri, MDR.representation, self.attriburi(datatype)))
             # Property terms are defined in convert_{aggregate,maindocs}
 
@@ -171,16 +175,18 @@ class UBLLibrary:
         '''Convert aggregate components.'''
         root = self.openxsd("common", "UBL-CommonAggregateComponents-2.1.xsd")
         for e in root.findall(XSD.xml('element')):
-            uri = CAC.term(e.attrib['name'])
+            uri = self.attriburi("cac:" + e.attrib['name'])
             g.add((uri, RDF.type, MDR.Property))
             g.add((uri, MDR.context, URIRef(self.ns)))
             g.add((uri, DCTERMS.rights, RIGHTS))
             g.add((uri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
             g.add((uri, ADMS.representationTechnique, XMLSchema))
-            g.add((uri, MDR.representation, CAC.term(e.attrib['type'])))
+            g.add((uri, MDR.hasXMLNamespace, URIRef(CAC)))
+            g.add((uri, MDR.hasXMLLocalPart, Literal(e.attrib['name'])))
+            g.add((uri, MDR.representation, self.attriburi("cac:" + e.attrib['type'])))
             # Property terms are defined below and in convert_maindocs
         for cls in root.findall(XSD.xml('complexType')):
-            clsuri = CAC.term(cls.attrib['name'])
+            clsuri = self.attriburi("cac:" + cls.attrib['name'])
             clsubl = re.sub(r"Type$", r"", cls.attrib['name'])
             clsname = self.cctsdoc(cls, "ObjectClass")
             # Object class
@@ -189,6 +195,8 @@ class UBLLibrary:
             g.add((clsuri, DCTERMS.rights, RIGHTS))
             g.add((clsuri, DCTERMS.rightsHolder, RIGHTS_HOLDER))
             g.add((clsuri, ADMS.representationTechnique, XMLSchema))
+            g.add((clsuri, MDR.hasXMLNamespace, URIRef(CAC)))
+            g.add((clsuri, MDR.hasXMLLocalPart, Literal(cls.attrib['name'])))
             g.add((clsuri, RDFS.label, self.text(clsname)))
             g.add((clsuri, MDR.objectClassName, Literal(clsname)))
             g.add((clsuri, SKOS.definition,
@@ -237,9 +245,9 @@ class UBLLibrary:
             for e in root.findall(XSD.xml('complexType') + "/" +
                                   XSD.xml('sequence') + "/" +
                                   XSD.xml('element')):
-                propuri = self.attriburi(e.attrib['ref'])
-                if propuri.startswith("ext:"):
+                if e.attrib['ref'].startswith("ext:"):
                     continue
+                propuri = self.attriburi(e.attrib['ref'])
                 g.add((propuri, MDR.propertyTerm,
                        Literal(self.cctsdoc(e, "PropertyTerm"))))
                 propqualifier = self.cctsdoc(e, "PropertyTermQualifier")
